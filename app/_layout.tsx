@@ -5,7 +5,9 @@ import { Stack } from "expo-router";
 export default function RootLayout() {
   return <AuthProvider>
     <ProductProvider>
-      <Stack />
+      <Stack screenOptions={{
+        headerShown:false,
+      }} />
     </ProductProvider>
   </AuthProvider>;
 }

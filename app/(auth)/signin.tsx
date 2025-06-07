@@ -16,20 +16,20 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useAuth } from '@/contexts/AuthContext';
 
-export const SignIn = () => {
+export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
     const { login } = useAuth();
-    const [loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleSumbit = async () => {
         setLoading(true);
         const res = await login(email, password);
         setLoading(false);
         if (res.success) {
-            router.navigate('/(tabs)');
+            router.push('/(tabs)/home');
         } else {
             alert(res.msg)
         }
@@ -113,7 +113,7 @@ export const SignIn = () => {
                             {/* Sign Up Link */}
                             <View style={styles.signUpContainer}>
                                 <Text style={styles.signUpText}>Don&apos;t have an account? </Text>
-                                <TouchableOpacity onPress={()=>router.navigate("/signup")}>
+                                <TouchableOpacity onPress={() => router.navigate("/signup")}>
                                     <Text style={styles.signUpLink}>Sign Up</Text>
                                 </TouchableOpacity>
                             </View>

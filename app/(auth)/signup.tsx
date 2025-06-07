@@ -16,7 +16,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'expo-router';
 
-export const SignUpScreen = () => {
+export default function SignUp (){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -45,7 +45,7 @@ export const SignUpScreen = () => {
 
         const result = await register(email, password, name, phoneNumber)
         if (result.success) {
-            router.navigate('signin');
+            router.push('/(auth)/signin');
         } else {
             alert(result.msg)
         }

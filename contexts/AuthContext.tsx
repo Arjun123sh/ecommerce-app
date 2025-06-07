@@ -32,7 +32,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         };
         setUser(basicUser);
         updateUserData(firebaseUser.uid);
-        router.replace('/(tabs)');
+        router.replace('/(tabs)/home');
       } else {
         setUser(null);
         router.replace('/');

@@ -1,4 +1,5 @@
 import { styles } from '@/contants';
+import { router } from 'expo-router';
 import React from 'react';
 import {
   View,
@@ -36,7 +37,7 @@ export default function ProfileScreen() {
         </View>
 
         <View style={styles.profileOptions}>
-          <ProfileOption icon="📋" title="Order History" />
+          <ProfileOption icon="📋" title="Order History" onPress={()=>router.push("/(profile)/orderhistory")} />
           <ProfileOption icon="📍" title="Addresses" />
           <ProfileOption icon="💳" title="Payment Methods" />
           <ProfileOption icon="🔔" title="Notifications" />

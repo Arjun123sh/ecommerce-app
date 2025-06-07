@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { useProducts } from '@/contexts/ProductsContext';
 import { styles } from '@/contants';
+import { router } from 'expo-router';
 
 const CartItem = ({ item, onUpdateQuantity, onRemove }:any) => {
   return (
@@ -85,7 +86,7 @@ export default function CartScreen() {
             <Text style={styles.totalText}>
               Total: ${getCartTotal().toFixed(2)}
             </Text>
-            <TouchableOpacity style={styles.checkoutBtn}>
+            <TouchableOpacity style={styles.checkoutBtn} onPress={()=>router.push("/(checkout)/checkout")}>
               <Text style={styles.checkoutText}>Proceed to Checkout</Text>
             </TouchableOpacity>
           </View>

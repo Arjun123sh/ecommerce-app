@@ -8,7 +8,7 @@ import React, {
 import {
   collection,
   onSnapshot,
-  orderBy,
+ 
   query,
   QueryDocumentSnapshot,
   DocumentData,
@@ -64,24 +64,33 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({ children }) =>
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const loadCart = async () => {
-      if (!user?.uid) return;
-      const cartRef = doc(db, 'cart', user.uid);
-      const cartSnap = await getDoc(cartRef);
-      if (cartSnap.exists()) {
-        const data = cartSnap.data();
-        setCart(data.items || []);
-      }
-    };
-    loadCart();
-  }, [user]);
-
-  const saveCartToFirestore = async (updatedCart: CartItem[]) => {
+useEffect(() => {
+  const loadCart = async () => {
     if (!user?.uid) return;
-    const cartRef = doc(db, 'cart', user.uid);
-    await setDoc(cartRef, { items: updatedCart });
+
+    const cartDocRef = doc(db, 'users', user.uid, 'cart', user.uid);
+    const cartSnap = await getDoc(cartDocRef);
+
+    if (cartSnap.exists()) {
+      const data = cartSnap.data();
+      setCart(data.items || []);
+    } else {
+      setCart([]); 
+    }
   };
+
+  loadCart();
+}, [user]);
+
+
+const saveCartToFirestore = async (updatedCart: CartItem[]) => {
+  if (!user?.uid) return;
+
+  const cartDocRef = doc(db, 'users', user.uid, 'cart', user.uid); 
+  await setDoc(cartDocRef, { items: updatedCart }, { merge: true });
+};
+
+
 
   const addToCart = (product: Product, quantity: number = 1) => {
     setCart((prevCart) => {

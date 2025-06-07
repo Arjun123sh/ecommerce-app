@@ -47,15 +47,7 @@ const CartTabIcon = ({ focused }:any) => {
           </View>
         )}
       </View>
-      <Text 
-        style={{ 
-          fontSize: 12, 
-          color: focused ? '#8B5CF6' : '#666',
-          fontWeight: focused ? '600' : '400'
-        }}
-      >
-        Cart
-      </Text>
+
     </View>
   );
 };
@@ -70,9 +62,9 @@ export default function TabLayout() {
           backgroundColor: '#FFFFFF',
           borderTopWidth: 1,
           borderTopColor: '#E5E7EB',
-          height: 90,
+          height: 60,
           paddingTop: 10,
-          paddingBottom: 25,
+          paddingBottom: 3,
         },
         tabBarShowLabel: false,
         headerShown: false,
@@ -81,34 +73,41 @@ export default function TabLayout() {
       <Tabs.Screen
         name="home"
         options={{
-          title: 'Home',
+          
+          tabBarShowLabel:false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon name="Home" focused={focused} icon="🏠" />
+            <TabIcon  focused={focused} icon="🏠" />
           ),
         }}
       />
       <Tabs.Screen
         name="cart"
+        
         options={{
-          title: 'Cart',
+          
+          tabBarShowLabel:false,
+         
           tabBarIcon: ({ focused }) => <CartTabIcon focused={focused} />,
         }}
       />
       <Tabs.Screen
         name="wishlist"
         options={{
-          title: 'Wishlist',
+
+          // title: 'Wishlist',
+          tabBarShowLabel:false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon name="Wishlist" focused={focused} icon="❤️" />
+            <TabIcon  focused={focused} icon="❤️" />
           ),
         }}
       />
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+
+                    tabBarShowLabel:false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon name="Profile" focused={focused} icon="👤" />
+            <TabIcon  focused={focused} icon="👤" />
           ),
         }}
       />
